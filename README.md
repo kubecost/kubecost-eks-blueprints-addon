@@ -24,7 +24,7 @@ const app = new cdk.App();
 
 // Include the Kubecost AddOn in your list
 const addOns: Array<ssp.ClusterAddOn> = [
-    // Grab your token from https://kubecost.com/install (it's free)
+    // Grab your token from kubecost.com/install (it's free)
     new KubecostAddOn({kubecostToken : 'kubecost_token'}),
 ];
 

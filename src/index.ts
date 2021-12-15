@@ -1,5 +1,5 @@
-import { ClusterAddOn, ClusterInfo } from '@aws-quickstart/ssp-amazon-eks';
-import { Construct } from '@aws-cdk/core';
+import { ClusterAddOn, ClusterInfo } from "@aws-quickstart/ssp-amazon-eks";
+import { Construct } from "@aws-cdk/core";
 
 export interface KubecostAddOnProps {
     /**
@@ -36,7 +36,7 @@ const defaultProps: KubecostAddOnProps = {
  * https://github.com/aws-quickstart/ssp-amazon-eks/blob/main/lib/utils/object-utils.ts
  */
 const setPath = (obj : any, path: string, val: any) => { 
-    const keys = path.split('.');
+    const keys = path.split(".");
     const lastKey = keys.pop()!;
     const lastObj = keys.reduce((obj, key) => 
         obj[key] = obj[key] || {}, 
@@ -63,8 +63,8 @@ export class KubecostAddOn implements ClusterAddOn {
         }
 
         const kubecostHelmChart = clusterInfo.cluster.addHelmChart("kubecost", {
-            chart: "kubecost/cost-analyzer",
-            release: "kubecost/cost-analyzer",
+            chart: "cost-analyzer",
+            release: "cost-analyzer",
             repository: "https://kubecost.github.io/cost-analyzer/",
             namespace: props.namespace,
             version: props.version,

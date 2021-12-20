@@ -1,6 +1,6 @@
 {
     "name": "@kubecost/kubecost-ssp-addon",
-    "version": "1.0.5",
+    "version": "1.0.8",
     "description": "Kubecost Addon for AWS SSP CDK Platform",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",

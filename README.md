@@ -14,24 +14,27 @@ $ npm install @kubecost/kubecost-ssp-addon
 
 ## Usage
 
-```javascript
-import 'source-map-support/register';
+```typescript
 import * as cdk from '@aws-cdk/core';
-import * as ssp from '@aws-quickstart/ssp-amazon-eks';
-import { KubecostAddOn, KubecostAddOnProps } from '@kubecost/kubecost-ssp-addon';
+import { EksBlueprint } from '@aws-quickstart/ssp-amazon-eks';
+import { KubecostAddOn } from '@kubecost/kubecost-ssp-addon';
 
-const app = new cdk.App();
 
-// Include the Kubecost AddOn in your list
-// Grab your token from kubecost.com/install (it's free)
-const addOns: Array<ssp.ClusterAddOn> = [
-    new KubecostAddOn({kubecostToken : 'kubecost_token'}),
-];
+export default class KubecostConstruct extends cdk.Construct {
+    constructor(scope: cdk.Construct, id: string) {
+        super(scope, id);
+        // AddOns for the cluster
+        // Include the Kubecost AddOn in your list
+        // Grab your token from kubecost.com/install (it's free)
+        const stackId = `${id}-blueprint`;
 
-const account = 'account_number'
-const region = 'aws_region'
-const props = { env: { account, region } }
-new ssp.EksBlueprint(app, { id: 'cluster_id', addOns}, props)
+        EksBlueprint.builder()
+            .account(process.env.CDK_DEFAULT_ACCOUNT!)
+            .region(process.env.CDK_DEFAULT_REGION)
+            .addOns(new KubecostAddOn())
+            .build(scope, stackId);
+    }
+}
 ```
 
 ## `KubecostAddOn` Options (props)

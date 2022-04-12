@@ -1,6 +1,8 @@
-# Kubecost AddOn for AWS SSP CDK Platform
+# Kubecost AddOn for Amazon EKS Blueprints
 
-This repository contains the source code for the Kubecost AddOn for AWS SSP CDK. `ssp-amazon-eks` is a [CDK](https://aws.amazon.com/cdk/) construct that makes it easy for customers to build and deploy a Shared Services Platform (SSP) on top of [Amazon EKS](https://aws.amazon.com/eks/).
+This repository contains the source code for the Kubecost AddOn for [Amazon EKS Blueprints](https://aws-quickstart.github.io/cdk-eks-blueprints/). This AddOn is a [CDK](https://aws.amazon.com/cdk/) construct that makes it easy for customers to add Kubecost to their Amazon EKS clusters.
+
+[Amazon EKS Blueprints](https://aws-quickstart.github.io/cdk-eks-blueprints/) is a framework that allows customers to create internal development platforms. It abstracts the complexities of cloud infrastructure from developers, and allows them to deploy workloads with ease
 
 Kubecost provides real-time cost visibility and insights by uncovering patterns that create overspending on infrastructure to help teams prioritize where to focus optimization efforts. By identifying root causes for negative patterns, customers using Kubecost save 30-50% or more of their Kubernetes cloud infrastructure costs. To read more about Kubecost and how to use it, see the [product and technical docs](https://docs.kubecost.com/getting-started).
 
@@ -14,27 +16,19 @@ $ npm install @kubecost/kubecost-ssp-addon
 
 ## Usage
 
-```typescript
-import * as cdk from '@aws-cdk/core';
-import { EksBlueprint } from '@aws-quickstart/ssp-amazon-eks';
-import { KubecostAddOn } from '@kubecost/kubecost-ssp-addon';
+```javascript
+import "source-map-support/register";
+import * as cdk from "aws-cdk-lib";
+import * as blueprints from "@aws-quickstart/eks-blueprints";
+import { KubecostAddOn } from "@kubecost/kubecost-blueprints-addon";
 
+const app = new cdk.App();
 
-export default class KubecostConstruct extends cdk.Construct {
-    constructor(scope: cdk.Construct, id: string) {
-        super(scope, id);
-        // AddOns for the cluster
-        // Include the Kubecost AddOn in your list
-        // Grab your token from kubecost.com/install (it's free)
-        const stackId = `${id}-blueprint`;
+const addOn = new KubecostAddOn();
 
-        EksBlueprint.builder()
-            .account(process.env.CDK_DEFAULT_ACCOUNT!)
-            .region(process.env.CDK_DEFAULT_REGION)
-            .addOns(new KubecostAddOn())
-            .build(scope, stackId);
-    }
-}
+const blueprint = blueprints.EksBlueprint.builder()
+  .addOns(addOn)
+  .build(app, "my-stack-name");
 ```
 
 ## `KubecostAddOn` Options (props)
@@ -49,11 +43,11 @@ You may get one [here](https://kubecost.com/install).
 
 #### `version: string` (optional)
 
-The `cost-analyzer` helm chart version. Defaults to the latest stable version specified in this repo (`1.88.1` at the time of writing).
+The `cost-analyzer` helm chart version. Defaults to the latest stable version specified in this repo (`1.92.0` at the time of writing).
 
-####  `values?: { [key: string]: any }` (optional)
+#### `values?: { [key: string]: any }` (optional)
 
-Custom values to pass to the chart. Config options: https://github.com/kubecost/cost-analyzer-helm-chart/blob/master/README.md#config-options 
+Custom values to pass to the chart. Config options: https://github.com/kubecost/cost-analyzer-helm-chart/blob/master/README.md#config-options
 
 #### `customPrometheus: string` (optional)
 

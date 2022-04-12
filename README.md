@@ -11,7 +11,7 @@ Kubecost provides real-time cost visibility and insights by uncovering patterns 
 Using [npm](https://npmjs.org):
 
 ```bash
-$ npm install @kubecost/kubecost-ssp-addon
+$ npm install @kubecost/kubecost-eks-blueprints-addon
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ $ npm install @kubecost/kubecost-ssp-addon
 import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
 import * as blueprints from "@aws-quickstart/eks-blueprints";
-import { KubecostAddOn } from "@kubecost/kubecost-blueprints-addon";
+import { KubecostAddOn } from "@kubecost/kubecost-eks-blueprints-addon";
 
 const app = new cdk.App();
 

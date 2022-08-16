@@ -63,7 +63,7 @@ const defaultProps: KubecostAddOnProps = {
   repository: "https://kubecost.github.io/cost-analyzer/",
   chart: "cost-analyzer",
   namespace: "kubecost",
-  version: "1.92.0",
+  version: "1.96.0",
   release: "kubecost-cost-analyzer",
   installPrometheusNodeExporter: true,
 };

@@ -1,6 +1,6 @@
 {
   "name": "@kubecost/kubecost-eks-blueprints-addon",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Kubecost AddOn for EKS Blueprints",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

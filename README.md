@@ -11,7 +11,7 @@ Kubecost provides real-time cost visibility and insights by uncovering patterns 
 Using [npm](https://npmjs.org):
 
 ```bash
-$ npm install @kubecost/kubecost-eks-blueprints-addon
+$ npm install @ibm/kubecost-eks-blueprints-addon
 ```
 
 ## Usage

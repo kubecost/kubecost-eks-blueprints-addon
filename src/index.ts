@@ -61,7 +61,7 @@ export interface KubecostAddOnProps {
 
 const defaultProps: KubecostAddOnProps = {
   repository: "https://kubecost.github.io/cost-analyzer/",
-  chart: "cost-analyzer",
+  chart: "kubecost",
   namespace: "kubecost",
   version: "1.96.0",
   release: "kubecost-cost-analyzer",
